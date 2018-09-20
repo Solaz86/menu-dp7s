@@ -1,0 +1,11 @@
+name = Menu
+description = Menu Maquetamos
+package = esinergia
+core = 7.x
+
+; Information added by Drupal.org packaging script on 2014-05-01
+version = "7.x-1.0"
+core = "7.x"
+project = "mq_menu"
+datestamp = "1398963366"
+

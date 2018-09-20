@@ -1,0 +1,53 @@
+<?php
+
+
+/**
+ * Implements hook_init().
+ */
+function mq_menu_init() {
+  drupal_add_js(drupal_get_path('module', 'mq_menu') . '/js/TweenMax.min.js');
+  drupal_add_js(drupal_get_path('module', 'mq_menu') . '/js/nearby.js');
+  drupal_add_js(drupal_get_path('module', 'mq_menu') . '/js/demo4.js');
+  drupal_add_css(drupal_get_path('module', 'mq_menu') . '/css/demo4.css');
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function mq_menu_block_info() {
+  $blocks['mq_menu'] = array(
+    'info' => t('Menu Lateral'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function mq_menu_theme($existing, $type, $theme, $path) {
+  return array(
+    'mq_menu' => array(
+      'template' => 'templates/mq-menu',
+      'variables' => array('menu' => NULL),
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function mq_menu_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'mq_menu':
+      $tree = menu_tree_all_data('main-menu');
+      $block['subject'] = t('');
+      $block['content'] = theme('mq_menu', array('menu' => $tree));
+      break;
+
+  }
+  return $block;
+}
